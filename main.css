@@ -4,12 +4,12 @@
 
 @layer components{
     .childTitle{
-        @apply border border-black text-center rounded-md m-1 overflow-hidden text-2xl bg-[#9ec1a3];
+        @apply text-center rounded-md m-1 overflow-hidden text-2xl bg-[#9ec1a3];
     }
-    .childTable{
-        @apply border border-black text-center rounded-md m-1 font-mono bg-[#cfe0c3];
+    .childContent{
+        @apply  text-center rounded-md m-1 font-mono bg-[#cfe0c3];
     }
-    .childTable:hover{
-        @apply scale-105 bg-slate-800 duration-100;
+    .childContent:hover{
+        @apply bg-slate-800 duration-100;
     }
 }

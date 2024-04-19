@@ -13,7 +13,7 @@
 <body class=" bg-[#cfbeaf]">
     <div class="grid grid-cols-4 h-screen ">
         <div class="bg-[#a4c3b2] place-content-center px-1">
-            <img src="logo-no-background.png" class="animate-pulse saturate-150" alt="">
+            <img src="img/logo-no-background.png" class="animate-pulse saturate-150" alt="">
         
         </div>
         
@@ -30,8 +30,9 @@
                     <button class="w-20 h-20 text-4xl bg-[#34463E] rounded-full"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
                 <div class="grid col-span-7 row-span-4 w-full h-full overflow-hidden">    
-                    <table id="tablica" class="h-full w-full  table-fixed border-slate-950  ">
-                    </table>
+                    <div id="calendar" class="grid grid-cols-7 grid-rows-6">
+
+                    </div>
                 </div>
             </div>
             
@@ -48,34 +49,22 @@
     </div>
 
     <script>
-        dni = ["Poniedzialek","Wtorek","Środa","Czwartek","Piątek","Sobota","Niedziela"]
-        
-        function insertChild(rows, cols){
-            var table =document.getElementById('tablica');
+        function appendDivToContainer(){
+            var cols = 7;
+            var rows = 6;
+            var container = document.getElementById("calendar");
             for(var i =0;i<rows;i++){
-                var row = table.insertRow();
-
-                for(var j=0;j<cols;j++){
-                    var cell;
-                    if(i === 0){
-                        cell = document.createElement('th');
-                        cell.classList.add("childTitle");
-                    }
-                    else{
-                        cell = document.createElement('td');
-                        cell.addEventListener("click", function(){
-                            alert("kliknales komorke :"+this.innerHTML);
-                        });
-                        cell.classList.add("childTable");
-                    }
-                    cell.innerHTML = (i === 0) ? dni[j] : "xddddd";
+                for(var j = 0;j<cols;j++){
+                    var div = document.createElement("div");
+                    container.appendChild(div);
+                    div.classList.add("childTitle");
                     
-                    row.appendChild(cell);
+                    div.textContent = j+" dupa" + i;
                     
                 }
             }
         }
-        insertChild(5,7)
+        appendDivToContainer();
     </script>
 </body>
 </html>
