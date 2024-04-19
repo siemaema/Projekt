@@ -9,7 +9,6 @@
     <script src="https://kit.fontawesome.com/90bfbfad1c.js" crossorigin="anonymous"></script>
 </head>
 
-
 <body class=" bg-[#cfbeaf]">
     <div class="grid grid-cols-4 h-screen ">
         <div class="bg-[#a4c3b2] place-content-center px-1">
@@ -30,7 +29,7 @@
                     <button class="w-20 h-20 text-4xl bg-[#34463E] rounded-full"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
                 <div class="grid col-span-7 row-span-4 w-full h-full overflow-hidden">    
-                    <div id="calendar" class="grid grid-cols-7 grid-rows-6">
+                    <div id="calendar" class="grid grid-cols-7 grid-rows-6 bg-cyan-500">
 
                     </div>
                 </div>
@@ -50,18 +49,24 @@
 
     <script>
         function appendDivToContainer(){
+            var dni = ["Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota","Niedziela"];
+
             var cols = 7;
             var rows = 6;
             var container = document.getElementById("calendar");
-            for(var i =0;i<rows;i++){
-                for(var j = 0;j<cols;j++){
-                    var div = document.createElement("div");
-                    container.appendChild(div);
+            for(var i = 0;i<42;i++){
+                var div = document.createElement('div');
+                
+                container.appendChild(div);
+                if(i <= 6){
                     div.classList.add("childTitle");
-                    
-                    div.textContent = j+" dupa" + i;
-                    
+                    div.textContent = dni[i];
                 }
+                else{
+                    div.textContent = "gówno";
+                    div.classList.add("childContent");
+                }
+                
             }
         }
         appendDivToContainer();

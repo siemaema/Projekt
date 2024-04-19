@@ -4,10 +4,10 @@
 
 @layer components{
     .childTitle{
-        @apply text-center rounded-md m-1 overflow-hidden text-2xl bg-[#9ec1a3];
+        @apply place-content-center text-center rounded-md m-1 overflow-hidden text-2xl bg-[#9ec1a3];
     }
     .childContent{
-        @apply  text-center rounded-md m-1 font-mono bg-[#cfe0c3];
+        @apply  place-content-center text-center rounded-md m-1 font-mono bg-[#cfe0c3];
     }
     .childContent:hover{
         @apply bg-slate-800 duration-100;
