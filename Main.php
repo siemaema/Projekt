@@ -63,7 +63,7 @@
                     div.textContent = dni[i];
                 }
                 else{
-                    div.textContent = "gówno";
+                    div.textContent = "siusiak";
                     div.classList.add("childContent");
                 }
                 
