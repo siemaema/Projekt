@@ -10,6 +10,6 @@
         @apply  place-content-center text-center rounded-md m-1 font-mono bg-[#cfe0c3];
     }
     .childContent:hover{
-        @apply bg-slate-800 duration-100;
+        @apply bg-slate-400 duration-200 scale-105;
     }
 }
