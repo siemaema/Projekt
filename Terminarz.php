@@ -9,14 +9,13 @@
     <script src="https://kit.fontawesome.com/90bfbfad1c.js" crossorigin="anonymous"></script>
 </head>
 <body class="h-full">
-        <div class="flex h-full w-full border-l-2 border-black bg-[#eee8de]">
-            <div class="grid grid-cols-7 grid-rows-5 w-full h-full bg-[#6b9080]">
-                
-                <div class="grid col-span-2 w-full  ">
-                    <div class="grid grid-flow-col grid-cols-3 grid-rows-1 place-content-center items-center">
-                        <a href="Main.php"><img src="back_button.png" alt="XDDDDDd"></a>
-                        <button class="col-span-2 w-20 h-20 text-4xl bg-[#34463E] rounded-full"><i class="fa-solid fa-arrow-left"></i></button>
-                    </div>
+        <div class="flex h-full w-full bg-[#6b9080]">
+            <div>
+                <a href="Main.php"><img src="img/back_button.png" alt="xddd" class="object-scale-down h-10 mt-2 ml-2"></a>
+            </div>
+            <div class="grid grid-cols-7 grid-rows-5 w-full h-full py-3 mr-14">
+                <div class="grid col-span-2 w-full place-content-center ">
+                    <button class="w-20 h-20 text-4xl bg-[#34463E] rounded-full"><i class="fa-solid fa-arrow-left"></i></button>
                 </div>
                 <div class="grid col-span-3 text-center place-content-center">
                     <p class="text-3xl font-bold">Kwiecień</p>
