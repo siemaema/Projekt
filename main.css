@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer components{
     .childTitle{
         @apply place-content-center text-center rounded-md m-1 overflow-hidden text-2xl bg-[#9ec1a3];
@@ -11,5 +12,8 @@
     }
     .childContent:hover{
         @apply bg-slate-400 duration-200 scale-105;
+    }
+    .navTitle{
+        @apply bg-zinc-600 pt-1 pb-1 text-2xl text-center h-16 ;
     }
 }
