@@ -41,21 +41,31 @@
             var rows = 6;
             var container = document.getElementById("calendar");
             for(var i = 0;i<42;i++){
-                var div = document.createElement('div');
+                var div = document.createElement('button');
                 
-                container.appendChild(div);
+                container.appendChild(div); //to leci do wyjebania 
                 if(i <= 6){
                     div.classList.add("childTitle");
                     div.textContent = dni[i];
                 }
                 else{
-                    div.textContent = "siusiak";
+                    div.textContent = i;
                     div.classList.add("childContent");
                 }
+                div.id = i;
                 
             }
         }
         appendDivToContainer();
+
+        document.querySelectorAll('.childContent').forEach(button => {
+        button.addEventListener('click', event => {
+        const buttonId = button.id;
+        alert("Kliknąłeś " + buttonId);
+    });
+});    
+        
+        
     </script>
 </body>
 
