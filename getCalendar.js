@@ -79,11 +79,13 @@ const initCalendar = () => {
 		dayBtn.classList.add('childContent');
 		calendarDaysContainer.appendChild(dayBtn);
 	}
-	for (let i = lastDayOfMonth; i < 6; i++) {
-		const dayBtn = document.createElement('button');
-		dayBtn.textContent = i - lastDayOfMonth + 1;
-		dayBtn.classList.add('childContent', 'bg-gray-300');
-		calendarDaysContainer.appendChild(dayBtn);
+	if(lastDayOfMonth !== 0){
+		for (let i = lastDayOfMonth; i < 6; i++) {
+			const dayBtn = document.createElement('button');
+			dayBtn.textContent = i - lastDayOfMonth + 1;
+			dayBtn.classList.add('childContent', 'bg-gray-300');
+			calendarDaysContainer.appendChild(dayBtn);
+		}
 	}
 };
 const refreshCalendar = () => {
@@ -101,3 +103,9 @@ previousMonthBtn.addEventListener('click', () => {
 });
 
 initCalendar();
+document.querySelectorAll('.childContent').forEach(button => {
+	button.addEventListener('click', () => {
+	const buttonId = button.textContent;
+	alert("Kliknąłeś " + buttonId);
+	});
+});

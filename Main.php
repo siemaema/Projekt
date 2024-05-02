@@ -18,19 +18,11 @@
         
         <div class="col-span-3 row-span-4 border-l-2 border-black bg-[#eee8de]">
             <div class="grid grid-cols-7 grid-rows-5 w-full h-full bg-[#6b9080]">
-                <div class="grid col-span-2 w-full place-content-center ">
-                    <button class="previous-month-btn w-20 h-20 text-4xl bg-[#34463E] rounded-full"><i class="fa-solid fa-arrow-left"></i></button>
+                <div class="grid col-span-7 place-content-center">
+                    <p class="text-3xl font-Montserrat">Zrobic na juz</p>
                 </div>
-                <div class="grid col-span-3 text-center place-content-center">
-                    <p class="current-month text-3xl font-bold"></p>
-                    <p class="current-date text-lg"></p>
-                </div>
-                <div class="grid col-span-2 place-content-center ">
-                    <button class="next-month-btn w-20 h-20 text-4xl bg-[#34463E] rounded-full"><i class="fa-solid fa-arrow-right"></i></button>
-                </div>
-                <div class="grid col-span-7 row-span-4 w-full h-full overflow-hidden">    
-                    <div id="calendar" class="calendar grid grid-cols-7 grid-rows-6 bg-cyan-500">
-                    </div>
+                <div id="test" class="grid row-span-4 col-span-7 p-2">
+
                 </div>
             </div>
             
@@ -45,6 +37,21 @@
             </div>
         </div>
     </div>
-    <script src="getCalendar.js"></script>
+    
 </body>
+ 
+<script> // ogólnie to jakieś gówno ale będzie poprawiane, dzisiaj chce mi się za bardzo spać i nie dam rady
+    var content = document.getElementById("test");
+    for(var i = 0;i<=4;i++){
+        var widget = document.createElement("span");
+        var img =document.createElement("img");
+        widget.textContent = "tu będzie najważniejsze info o naprawie która będzie najszybiciej";
+        widget.classList.add('childContentMain');
+        img.src="img/exclamation_mark_yellow.jpg";
+        img.classList.add("w-20", "h-20")
+        widget.appendChild(img);
+        content.appendChild(widget);
+    }
+</script>
+
 </html>

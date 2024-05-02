@@ -16,4 +16,10 @@
     .navTitle{
         @apply bg-zinc-600 pt-1 pb-1 text-2xl text-center h-16 ;
     }
+    .childContentMain{
+        @apply  place-content-center text-center rounded-md m-1 font-mono bg-[#cfe0c3];
+    }
+    .childContentMain:hover{
+        @apply bg-slate-400 duration-200;
+    }
 }
