@@ -49,12 +49,40 @@ const initCalendar = () => {
 		year: 'numeric',
 	});
 	curenntDateSpan.textContent = `${getCurrentDay(currentDay)} ${currentDate}`;
+	//Generowanie dni tygodnia kalendarza
+	for (let i = 0; i < 7; i++) {
+		const daySpan = document.createElement('span');
+		daySpan.textContent = getCurrentDay(i);
+		daySpan.classList.add('childTitle');
+		calendarDaysContainer.appendChild(daySpan);
+	}
 	//Generowanie zawartości kalendarza
-	const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-	for (let i = 1; i <= lastDayOfMonth; i++) {
+	const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay(),
+		lastDateOfMonth = new Date(currentYear, currentMonth + 1, 0).getDate(),
+		lastDayOfMonth = new Date(
+			currentYear,
+			currentMonth,
+			lastDateOfMonth
+		).getDay(),
+		lastDateofLastMonth = new Date(currentYear, currentMonth, 0).getDate();
+
+	for (let i = firstDayOfMonth; i > 1; i--) {
+		const dayBtn = document.createElement('button');
+		dayBtn.textContent = lastDateofLastMonth - i + 2;
+		dayBtn.classList.add('childContent', 'bg-gray-300');
+		calendarDaysContainer.appendChild(dayBtn);
+	}
+
+	for (let i = 1; i <= lastDateOfMonth; i++) {
 		const dayBtn = document.createElement('button');
 		dayBtn.textContent = i;
 		dayBtn.classList.add('childContent');
+		calendarDaysContainer.appendChild(dayBtn);
+	}
+	for (let i = lastDayOfMonth; i < 6; i++) {
+		const dayBtn = document.createElement('button');
+		dayBtn.textContent = i - lastDayOfMonth + 1;
+		dayBtn.classList.add('childContent', 'bg-gray-300');
 		calendarDaysContainer.appendChild(dayBtn);
 	}
 };
