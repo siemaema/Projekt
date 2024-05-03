@@ -21,8 +21,12 @@
                 <div class="grid col-span-7 place-content-center">
                     <p class="text-3xl font-Montserrat">Zrobic na juz</p>
                 </div>
-                <div id="test" class="grid row-span-4 col-span-7 p-2">
-
+                <div id="test" class="grid row-span-4 col-span-7 p-2 grid-cols-1 grid-rows-5">
+                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4"><p>blachy : </p> <p>Opis Naprawy : </p><p>Pozostały czas naprawy : </p></span><img class="size-20 ml-auto" src="img/exclamation_mark_red-removebg-preview.png" alt="dupa"></div>
+                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4"><p>blachy : </p> <p>Opis Naprawy : </p><p>Pozostały czas naprawy : </p></span><img class="size-20 ml-auto" src="img/exclamation_mark_red-removebg-preview.png" alt="xddd"></div>
+                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4"><p>blachy : </p> <p>Opis Naprawy : </p><p>Pozostały czas naprawy : </p></span><img class="size-20 ml-auto" src="img/exclamation_mark_yellow-removebg-preview.png" alt="dsadas"></div>
+                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4"><p>blachy : </p> <p>Opis Naprawy : </p><p>Pozostały czas naprawy : </p></span><img class="size-20 ml-auto" src="img/exclamation_mark_yellow-removebg-preview.png" alt="dsa"></div>
+                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4"><p>blachy : </p> <p>Opis Naprawy : </p><p>Pozostały czas naprawy : </p></span><img class="size-20 ml-auto" src="img/exclamation_mark_yellow-removebg-preview.png" alt="dsa"></div>
                 </div>
             </div>
             
@@ -40,18 +44,21 @@
     
 </body>
  
-<script> // ogólnie to jakieś gówno ale będzie poprawiane, dzisiaj chce mi się za bardzo spać i nie dam rady
+<!-- <script> // ogólnie to jakieś gówno ale będzie poprawiane, dzisiaj chce mi się za bardzo spać i nie dam rady
     var content = document.getElementById("test");
     for(var i = 0;i<=4;i++){
-        var widget = document.createElement("span");
+        var widget = document.createElement("div");
+        var tresc = document.createElement("p");
         var img =document.createElement("img");
-        widget.textContent = "tu będzie najważniejsze info o naprawie która będzie najszybiciej";
-        widget.classList.add('childContentMain');
+        tresc.textContent = "tu będzie najważniejsze info o naprawie która będzie najszybiciej";
+        tresc.classList.add("text-center")
+        widget.classList.add('childContentMain',"grid","grid-flow-col");
         img.src="img/exclamation_mark_yellow.jpg";
         img.classList.add("w-20", "h-20")
+        widget.appendChild(tresc);
         widget.appendChild(img);
         content.appendChild(widget);
     }
-</script>
+</script> -->
 
 </html>
