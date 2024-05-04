@@ -21,7 +21,7 @@
         <div class="col-span-3 row-span-4 border-l-2 border-black bg-[#eee8de]">
             <div class="grid grid-cols-7 grid-rows-5 w-full h-full bg-[#6b9080]">
                 <div class="grid col-span-7 place-content-center">
-                    <p class="text-3xl font-Montserrat">Zrobic na juz</p>
+                    <p class="text-3xl font-Montserrat">przeprowadzić natychmiastową realizację</p>
                 </div>
                 <div id="test" class="grid row-span-4 col-span-7 p-2 grid-cols-1 grid-rows-5 pt-2">
                     
@@ -64,12 +64,14 @@
         var img = document.createElement("img");
         if(i <=2){
             img.src="img/exclamation_mark_red-removebg-preview.png";
+            img.classList.add("size-24","ml-auto","p-1")
         }
         else{
             img.src = "img/exclamation_mark_yellow-removebg-preview.png";
+            img.classList.add("size-24","ml-auto")
         }
 
-        img.classList.add("size-24","ml-auto")
+        
         var span = document.createElement("span");
         
         span.classList.add("grid", "grid-flow-col", "col-span-4");

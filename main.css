@@ -23,7 +23,7 @@
         @apply bg-slate-400 duration-200;
     }
     .CenterDivParent{
-        @apply grid bg-slate-900;
+        @apply grid bg-slate-950;
     }
     .CenterDivChild{
         @apply mt-11 text-center text-white font-Montserrat text-2xl pt-2;
