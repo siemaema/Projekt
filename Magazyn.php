@@ -48,7 +48,38 @@
         var object = document.createElement("img");
         object.src = "img/exclamation_mark_red-removebg-preview.png";
         object.classList.add("hover:translate-y-1.5", "border-2", "border-[#a7dec6]");
+        object.id = i;
         cont.appendChild(object);
+
+        object.addEventListener('click', () => {
+            var contener = document.createElement("div");
+            contener.classList.add("fixed", "inset-0", "bg-white", "opacity-80");
+
+            var centerDiv = document.createElement("div");
+            centerDiv.classList.add("CenterDivParent","absolute", "top-1/2", "left-1/2","w-2/5","h-2/3", "-translate-x-1/2", "-translate-y-1/2", "p-4", "rounded-md");
+            
+            var paragraph1 = document.createElement("p");
+            paragraph1.textContent = "Ilość części na stanie: 100";
+            paragraph1.classList.add("CenterDivChild");
+
+            var paragraph2 = document.createElement("p");
+            paragraph2.textContent = "Pełna nazwa części: Nazwa części";
+            paragraph2.classList.add("CenterDivChild");
+
+            centerDiv.appendChild(paragraph1);
+            centerDiv.appendChild(paragraph2);
+
+            centerDiv.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+
+            contener.addEventListener('click', () => {
+        // Usuwanie kontenera po kliknięciu
+                contener.remove();
+            });
+        contener.appendChild(centerDiv);
+        document.body.appendChild(contener);
+        })
     }
 
 
