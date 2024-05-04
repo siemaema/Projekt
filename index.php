@@ -23,32 +23,8 @@
                 <div class="grid col-span-7 place-content-center">
                     <p class="text-3xl font-Montserrat">Zrobic na juz</p>
                 </div>
-                <div id="test" class="grid row-span-4 col-span-7 p-2 grid-cols-1 grid-rows-5">
-                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4">
-                            <p>blachy : </p>
-                            <p>Opis Naprawy : </p>
-                            <p>Pozostały czas naprawy : </p>
-                        </span><img class="size-20 ml-auto" src="img/exclamation_mark_red-removebg-preview.png" alt="dupa"></div>
-                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4">
-                            <p>blachy : </p>
-                            <p>Opis Naprawy : </p>
-                            <p>Pozostały czas naprawy : </p>
-                        </span><img class="size-20 ml-auto" src="img/exclamation_mark_red-removebg-preview.png" alt="xddd"></div>
-                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4">
-                            <p>blachy : </p>
-                            <p>Opis Naprawy : </p>
-                            <p>Pozostały czas naprawy : </p>
-                        </span><img class="size-20 ml-auto" src="img/exclamation_mark_yellow-removebg-preview.png" alt="dsadas"></div>
-                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4">
-                            <p>blachy : </p>
-                            <p>Opis Naprawy : </p>
-                            <p>Pozostały czas naprawy : </p>
-                        </span><img class="size-20 ml-auto" src="img/exclamation_mark_yellow-removebg-preview.png" alt="dsa"></div>
-                    <div class="childContentMain grid grid-flow-col row-span-1 grid-cols-5"><span class="grid grid-flow-col col-span-4">
-                            <p>blachy : </p>
-                            <p>Opis Naprawy : </p>
-                            <p>Pozostały czas naprawy : </p>
-                        </span><img class="size-20 ml-auto" src="img/exclamation_mark_yellow-removebg-preview.png" alt="dsa"></div>
+                <div id="test" class="grid row-span-4 col-span-7 p-2 grid-cols-1 grid-rows-5 pt-2">
+                    
                 </div>
             </div>
 
@@ -65,22 +41,53 @@
     </div>
 
 </body>
-
-<!-- <script> // ogólnie to jakieś gówno ale będzie poprawiane, dzisiaj chce mi się za bardzo spać i nie dam rady
-    var content = document.getElementById("test");
+<script src="prompt.js"></script>
+<script>
+    
+    var widget = document.getElementById("test");
     for(var i = 0;i<=4;i++){
-        var widget = document.createElement("div");
-        var tresc = document.createElement("p");
-        var img =document.createElement("img");
-        tresc.textContent = "tu będzie najważniejsze info o naprawie która będzie najszybiciej";
-        tresc.classList.add("text-center")
-        widget.classList.add('childContentMain',"grid","grid-flow-col");
-        img.src="img/exclamation_mark_yellow.jpg";
-        img.classList.add("w-20", "h-20")
-        widget.appendChild(tresc);
-        widget.appendChild(img);
-        content.appendChild(widget);
+        var cialo = document.createElement("div");
+        cialo.classList.add("childContentMain", "grid", "grid-flow-col", "row-span-1", "grid-cols-5");
+
+        var blachy = document.createElement("p");
+        var Blachy = "Rejestracja : \n" +"LZA"+12341+i;
+        blachy.innerHTML = Blachy;
+
+        var opis = document.createElement("p");
+        var Opis = "Opis naprawy : \n"+" Auto nadaje się do kasacji  A co jeżeli tekst jest dłuższy to nie powinno być tego widać cały czas tylko wtedy jak wybierze się konkretny kafel :)" + i;
+        opis.innerHTML = Opis;
+
+        var data = document.createElement("p");
+        let date = new Date();
+        var dzien = "Data zakończenia : \n"+"0" + date.getDay()+"."+date.getMonth()+"."+date.getFullYear();
+        data.innerHTML = dzien;
+        var img = document.createElement("img");
+        if(i <=2){
+            img.src="img/exclamation_mark_red-removebg-preview.png";
+        }
+        else{
+            img.src = "img/exclamation_mark_yellow-removebg-preview.png";
+        }
+
+        img.classList.add("size-24","ml-auto")
+        var span = document.createElement("span");
+        
+        span.classList.add("grid", "grid-flow-col", "col-span-4");
+        blachy.classList.add("element","pt-2");
+        opis.classList.add("element","pt-2");
+        data.classList.add("element","pt-2");
+        widget.appendChild(cialo);
+        cialo.appendChild(span);
+        span.appendChild(blachy);
+        span.appendChild(opis);
+        span.appendChild(data);
+        cialo.appendChild(img);
+
+        span.addEventListener('click', () =>{
+            createCenterContent(Blachy,Opis,dzien);
+        })
+        
     }
-</script> -->
+</script>
 
 </html>
