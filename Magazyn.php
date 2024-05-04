@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AutoServiceData</title>
+    <link rel="shortcut icon" href="img\icon.png" type="image/x-icon">
     <link rel="stylesheet" href="output.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/90bfbfad1c.js" crossorigin="anonymous"></script>
 </head>
+
 <body class="h-full font-Montserrat">
     <div class="flex h-full w-full bg-[#6b9080]">
         <div>
-            <a href="Main.php"><img src="img/back_button.png" alt="xddd" class="object-scale-down h-10 mt-2 ml-2 mr-2"></a>
+            <a href="index.php"><img src="img/back_button.png" alt="xddd" class="object-scale-down h-10 mt-2 ml-2 mr-2"></a>
         </div>
         <div class="w-full h-full grid grid-cols-1 grid-rows-5 pr-14 pb-16">
             <div class="grid grid-rows-1 grid-cols-8 place-items-center grid-flow-col">
@@ -26,11 +29,11 @@
                 </div>
             </div>
             <div id="obrazy" class="grid row-span-4 grid-cols-4 gap-2 overflow-y-auto">
-                
+
             </div>
-            
+
         </div>
-         
+
     </div>
 </body>
 
@@ -40,6 +43,7 @@
 
     var liczbaElementow = 10
     var cont = document.getElementById("obrazy");
+
     function dodajObraz() {
         var object = document.createElement("img");
         object.src = "img/exclamation_mark_red-removebg-preview.png";
@@ -47,7 +51,7 @@
         cont.appendChild(object);
     }
 
-    
+
     for (var i = 0; i < liczbaElementow; i++) {
         dodajObraz();
     }
@@ -57,4 +61,5 @@
         dodajObraz();
     });
 </script>
+
 </html>

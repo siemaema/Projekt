@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full ">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AutoServiceData</title>
+    <link rel="shortcut icon" href="img\icon.png" type="image/x-icon">
     <link rel="stylesheet" href="output.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/90bfbfad1c.js" crossorigin="anonymous"></script>
@@ -11,10 +13,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
+
 <body class="h-full font-Montserrat ">
     <div class="flex h-full w-full bg-[#6b9080]">
         <div>
-            <a href="Main.php"><img src="img/back_button.png" alt="xddd" class="object-scale-down h-10 mt-2 ml-2"></a>
+            <a href="index.php"><img src="img/back_button.png" alt="xddd" class="object-scale-down h-10 mt-2 ml-2"></a>
         </div>
         <div class="grid grid-cols-4 grid-rows-5 w-full h-full ">
             <div class="grid col-span-4 place-content-center ">
@@ -31,26 +34,24 @@
 
                 </div>
             </div>
-                
-        </div>
-            
-    </div>
-    
 
-<script>
-    
-    var content = document.getElementById("listaZlecen");
-    var rows = 15;
-    var cols = 4;
-    for(var i =0;i<40;i++){
-        var div = document.createElement("div");
-        content.appendChild(div);
-        div.classList.add("bg-red-200","p-5","my-1");
-        div.textContent = "TEST"+i;
-            
-    }
-</script>
+        </div>
+
+    </div>
+
+
+    <script>
+        var content = document.getElementById("listaZlecen");
+        var rows = 15;
+        var cols = 4;
+        for (var i = 0; i < 40; i++) {
+            var div = document.createElement("div");
+            content.appendChild(div);
+            div.classList.add("bg-red-200", "p-5", "my-1");
+            div.textContent = "TEST" + i;
+
+        }
+    </script>
 </body>
 
 </html>
-
