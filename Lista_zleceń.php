@@ -30,7 +30,7 @@
                     <div class="navTitle">Opis naprawy</div>
                     <div class="navTitle rounded-tr-md">Dane kontaktowe wlasciciela</div>
                 </div>
-                <div id="listaZlecen" class="grid grid-cols-4 row-span-5 gap-2  overflow-y-auto">
+                <div id="listaZlecen" class="grid grid-cols-1 gap-2  overflow-y-auto">
 
                 </div>
             </div>
@@ -38,20 +38,51 @@
         </div>
 
     </div>
+<script src="listaZlecen.js"></script>
+<script >
+      var content = document.getElementById("listaZlecen");
+    
+    for (var i = 0; i < 40; i++) {
+        var div = document.createElement("div");
+        content.appendChild(div);
+        div.classList.add("py-3", "text-center","bg-red-200"); // Dodaj klasy do elementu div
+        
+        var span = document.createElement("span");
+        span.classList.add("grid", "grid-flow-col", "grid-cols-4", "py-3", "text-center","divide-x-2","divide-slate-400","max-h-10","overflow-hidden"); // Dodaj klasy do elementu span
+        span.id = i;
+        var id = document.createElement("p");
+        var dane = document.createElement("p");
+        var opis = document.createElement("p");
+        var kontakt = document.createElement("p");
+        var button = document.createElement("button");
+
+        var Id = "numer : " + i;
+        var Dane = "LZA21"+i;
+        var Opis = "tako lecimy z opisem";
+        var Kontakt = "+4832130421";
+        id.innerHTML = Id;
+        dane.innerHTML = Dane;
+        opis.innerHTML = Opis;
+        kontakt.innerHTML = Kontakt;
+        
+        span.appendChild(id);
+        span.appendChild(dane);
+        span.appendChild(opis);
+        span.appendChild(kontakt);
+        
+
+        span.addEventListener('click', function() {
+            var getId = this.id;
+            contentCenter(Dane,Opis,Kontakt); // Zakładając, że funkcja createCenterContent jest zdefiniowana
 
 
-    <script>
-        var content = document.getElementById("listaZlecen");
-        var rows = 15;
-        var cols = 4;
-        for (var i = 0; i < 40; i++) {
-            var div = document.createElement("div");
-            content.appendChild(div);
-            div.classList.add("bg-red-200", "p-5", "my-1");
-            div.textContent = "TEST" + i;
+           
+        });
 
+        
+        div.appendChild(span);
         }
-    </script>
+</script>
 </body>
 
 </html>
