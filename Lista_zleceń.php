@@ -45,11 +45,12 @@
     for (var i = 0; i < 40; i++) {
         var div = document.createElement("div");
         content.appendChild(div);
-        div.classList.add("py-3", "text-center","bg-red-200"); // Dodaj klasy do elementu div
+        div.classList.add("py-3", "text-center","bg-[#cfe0c3]"); // Dodaj klasy do elementu div
+        div.id = i;
         
         var span = document.createElement("span");
         span.classList.add("grid", "grid-flow-col", "grid-cols-4", "py-3", "text-center","divide-x-2","divide-slate-400","max-h-10","overflow-hidden"); // Dodaj klasy do elementu span
-        span.id = i;
+        
         var id = document.createElement("p");
         var dane = document.createElement("p");
         var opis = document.createElement("p");
@@ -71,12 +72,11 @@
         span.appendChild(kontakt);
         
 
-        span.addEventListener('click', function() {
+        div.addEventListener('click', function() {
             var getId = this.id;
-            contentCenter(Dane,Opis,Kontakt); // Zakładając, że funkcja createCenterContent jest zdefiniowana
-
-
-           
+            console.log(getId);
+            contentCenter(Dane,Opis,Kontakt,getId); // Zakładając, że funkcja createCenterContent jest zdefiniowana
+            
         });
 
         

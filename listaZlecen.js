@@ -1,4 +1,4 @@
-function contentCenter(Blachy, Opis, dzien) {
+function contentCenter(Blachy, Opis, dzien,id) {
     var contener = document.createElement("div");
     contener.classList.add("fixed", "inset-0", "bg-white", "opacity-80");
 
@@ -19,7 +19,7 @@ function contentCenter(Blachy, Opis, dzien) {
 
     var delet = document.createElement("button");
     delet.textContent = "delete";
-    delet.classList.add("size-fit","CenterDivChild");
+    delet.classList.add("h-18","w-30","bg-cyan-500" ,"shadow-lg" ,"shadow-cyan-500/50");
 
     centerDiv.style.opacity = "1";
 
@@ -28,10 +28,24 @@ function contentCenter(Blachy, Opis, dzien) {
     centerDiv.appendChild(paragraph3);
     centerDiv.appendChild(delet);
 
+    
+
+    delet.addEventListener('click',()=>{
+       var toRemove = document.getElementById(id);
+       if(toRemove){
+        toRemove.remove();
+        
+
+        contener.remove();
+       }
+       else{
+        console.error("nie znaleziono");
+       }
+    })
+
     centerDiv.addEventListener('click', (event) => {
         event.stopPropagation();
     });
-
     contener.addEventListener('click', () => {
         // Usuwanie kontenera po kliknięciu
         contener.remove();

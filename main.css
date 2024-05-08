@@ -14,7 +14,7 @@
         @apply bg-slate-400 duration-200 scale-105;
     }
     .navTitle{
-        @apply bg-zinc-600 pt-1 pb-1 text-2xl text-center h-16 ;
+        @apply bg-[#7f7f7f] pt-1 pb-1 text-2xl text-center h-16 ;
     }
     .childContentMain{
         @apply  place-content-center text-center rounded-md m-1 font-mono bg-[#cfe0c3];
@@ -23,7 +23,7 @@
         @apply bg-slate-400 duration-200;
     }
     .CenterDivParent{
-        @apply grid grid-cols-1 bg-slate-950 place-items-center;
+        @apply grid grid-cols-1 bg-slate-950;
     }
     .CenterDivChild{
         @apply mt-11 text-center text-white font-Montserrat text-2xl pt-2;
