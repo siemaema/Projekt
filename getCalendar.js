@@ -103,9 +103,3 @@ previousMonthBtn.addEventListener('click', () => {
 });
 
 initCalendar();
-document.querySelectorAll('.childContent').forEach(button => {
-	button.addEventListener('click', () => {
-	const buttonId = button.textContent;
-	alert("Kliknąłeś " + buttonId);
-	});
-});

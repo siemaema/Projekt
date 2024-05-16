@@ -554,6 +554,40 @@ video {
   --tw-contain-style:  ;
 }
 
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
 .childTitle {
   margin: 0.25rem;
   place-content: center;
@@ -586,7 +620,7 @@ video {
 }
 
 .navTitle {
-  height: 4rem;
+  height: 5rem;
   --tw-bg-opacity: 1;
   background-color: rgb(127 127 127 / var(--tw-bg-opacity));
   padding-top: 0.25rem;
@@ -634,6 +668,10 @@ video {
   max-height: 5rem;
   max-width: 11rem;
   overflow: hidden;
+}
+
+.maxSpan {
+  max-height: 5rem;
 }
 
 .fixed {
@@ -791,10 +829,6 @@ video {
 
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.grid-cols-5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .grid-cols-7 {
@@ -985,16 +1019,12 @@ video {
   padding-bottom: 4rem;
 }
 
-.pb-5 {
-  padding-bottom: 1.25rem;
+.pb-3 {
+  padding-bottom: 0.75rem;
 }
 
 .pr-14 {
   padding-right: 3.5rem;
-}
-
-.pr-4 {
-  padding-right: 1rem;
 }
 
 .pr-5 {

@@ -24,8 +24,47 @@
                     <p class="text-3xl font-Montserrat text-shadow-sm">Przeprowadzić natychmiastową realizację</p>
                 </div>
                 <div id="test" class="grid row-span-4 col-span-7 p-2 grid-cols-1 grid-rows-5 pt-2">
+                
+                <?php
+
+                    $connect = mysqli_connect("srv1482.hstgr.io","u749382198_admin","uZq:D*K9","u749382198_autoservice");
                     
-                </div>
+                    if (mysqli_connect_errno()) {
+                        exit("Błąd połączenia: " . mysqli_connect_error());
+                    } else {
+                        $sql = mysqli_query($connect, "SELECT Numer_Rejestracyjny, OpisNaprawy, DataRozpoczecia FROM naprawy inner join samochody ON naprawy.id_Samochodu = samochody.id_Samochodu Limit 5");
+                    
+                        if (!$sql) {
+                            exit("Błąd zapytania: " . mysqli_error($connect));
+                        }
+                        $counter = 0;
+                        while ($dane = mysqli_fetch_array($sql)) {$counter++;
+                            echo "<div class='childContentMain grid grid-flow-col row-span-1 grid-cols-4' onclick='createCenterContent(\"" . htmlspecialchars($dane['Numer_Rejestracyjny'], ENT_QUOTES) . "\",\"" . htmlspecialchars($dane['OpisNaprawy'], ENT_QUOTES) . "\",\"" . htmlspecialchars($dane['DataRozpoczecia'], ENT_QUOTES) . "\")'>";
+                            $Blachy = $dane['Numer_Rejestracyjny'];
+                            $Opis = $dane['OpisNaprawy'];
+                            $dzien = $dane['DataRozpoczecia'];
+                    
+                            echo "<p class='element pt-2'>Blachy\n $Blachy </p>";
+                            echo "<p class='element pt-2'>Opis:\n $Opis</p>";
+                            echo "<p class='element pt-2'>data rozpoczecia: $dzien</p>";
+                    
+                            if ($counter <= 2) {
+                                echo "<img src='img/exclamation_mark_red-removebg-preview.png' class='size-24 ml-auto p-1'>";
+                            } else {
+                                echo "<img src='img/exclamation_mark_yellow-removebg-preview.png' class='size-24 ml-auto'>";
+                            }
+                    
+                            echo "</div>";
+                        }
+                    
+                        mysqli_close($connect); // Zamykanie połączenia z bazą danych
+                    }
+                    
+                    
+                ?>
+
+                
+            </div>
             </div>
 
         </div>
@@ -42,54 +81,4 @@
 
 </body>
 <script src="prompt.js"></script>
-<script>
-    
-    var widget = document.getElementById("test");
-    for(var i = 0;i<=4;i++){
-        var cialo = document.createElement("div");
-        cialo.classList.add("childContentMain", "grid", "grid-flow-col", "row-span-1", "grid-cols-5");
-
-        var blachy = document.createElement("p");
-        var Blachy = "Rejestracja : \n" +"LZA"+12341+i;
-        blachy.innerHTML = Blachy;
-
-        var opis = document.createElement("p");
-        var Opis = "Opis naprawy : \n"+" Auto nadaje się do kasacji  A co jeżeli tekst jest dłuższy to nie powinno być tego widać cały czas tylko wtedy jak wybierze się konkretny kafel :)" + i;
-        opis.innerHTML = Opis;
-
-        var data = document.createElement("p");
-        let date = new Date();
-        var dzien = "Data zakończenia : \n"+"0" + date.getDay()+"."+date.getMonth()+"."+date.getFullYear();
-        data.innerHTML = dzien;
-        var img = document.createElement("img");
-        if(i <=2){
-            img.src="img/exclamation_mark_red-removebg-preview.png";
-            img.classList.add("size-24","ml-auto","p-1")
-        }
-        else{
-            img.src = "img/exclamation_mark_yellow-removebg-preview.png";
-            img.classList.add("size-24","ml-auto")
-        }
-
-        
-        var span = document.createElement("span");
-        
-        span.classList.add("grid", "grid-flow-col", "col-span-4");
-        blachy.classList.add("element","pt-2");
-        opis.classList.add("element","pt-2");
-        data.classList.add("element","pt-2");
-        widget.appendChild(cialo);
-        cialo.appendChild(span);
-        span.appendChild(blachy);
-        span.appendChild(opis);
-        span.appendChild(data);
-        cialo.appendChild(img);
-
-        span.addEventListener('click', () =>{
-            createCenterContent(Blachy,Opis,dzien);
-        })
-        
-    }
-</script>
-
 </html>

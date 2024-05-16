@@ -33,11 +33,19 @@ function contentCenter(Blachy, Opis, dzien,id) {
     delet.addEventListener('click',()=>{
        var toRemove = document.getElementById(id);
        if(toRemove){
-        toRemove.remove();
-        
-
-        contener.remove();
-       }
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "delete_object.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Po odebraniu odpowiedzi, usuń element z widoku
+                toRemove.remove();
+                contener.remove();
+                console.log(xhr.responseText); // Wyświetl odpowiedź z serwera w konsoli
+            }
+        };
+        xhr.send("id=" + encodeURIComponent(id));
+    }
        else{
         console.error("nie znaleziono");
        }

@@ -26,14 +26,54 @@
                     <button class="next-month-btn w-20 h-20 text-4xl bg-[#34463E] rounded-full"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
                 <div class="grid col-span-7 row-span-4 w-full h-full overflow-hidden">    
-                    <div id="calendar" class="calendar grid grid-cols-7 grid-rows-6 ">
+                        <div id="calendar" class="calendar grid grid-cols-7 grid-rows-6 ">
 
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
-
         <script src="getCalendar.js"></script>
+        <script>
+        document.querySelectorAll('.childContent').forEach(button => {
+    button.addEventListener('click', async () => {
+        const buttonId = button.textContent;
+        const selectedDate = `2024-05-${buttonId}`; // Tworzymy datę na podstawie klikniętego dnia (tutaj zakładamy, że rok i miesiąc są stałe)
+
+        try {
+            // Łączymy się z bazą danych
+            const response = await fetch('fetch_repairs.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ selectedDate }) // Przesyłamy selectedDate jako część obiektu JSON
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Pobieramy dane z serwera
+            const repairsData = await response.json();
+
+            let message;
+            if (repairsData.length > 0) {
+                // Formatujemy naprawy do wyświetlenia w alercie
+                const repairsList = repairsData.map(repair => repair.NazwaNaprawy).join('\n');
+                message = `Naprawy zaplanowane na ${selectedDate}:\n${repairsList}`;
+            } else {
+                message = `Brak zaplanowanych napraw na ${selectedDate}.`;
+            }
+
+            alert(message);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+});
+
+    </script>
+        
 </body>
 
 
