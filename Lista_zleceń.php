@@ -31,58 +31,58 @@
                     <div class="navTitle rounded-tr-md">Dane kontaktowe wlasciciela</div>
                 </div>
                 <div id="listaZlecen" class="grid grid-cols-1 gap-2 row-span-4 overflow-y-auto">
-                <?php
-// Połączenie z bazą danych
-$connect = mysqli_connect("srv1482.hstgr.io", "u749382198_admin", "uZq:D*K9", "u749382198_autoservice");
-if (!$connect) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+                    <?php
+                    // Połączenie z bazą danych
+                    $connect = mysqli_connect("srv1482.hstgr.io", "u749382198_admin", "uZq:D*K9", "u749382198_autoservice");
+                    if (!$connect) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
 
-// Zapytanie do bazy danych
-$query = "SELECT naprawy.Id_Naprawy, naprawy.OpisNaprawy, samochody.Numer_Rejestracyjny, klienci.Telefon 
-          FROM klienci 
-          INNER JOIN samochody ON klienci.Id_Klienta = samochody.Id_Klienta 
-          INNER JOIN naprawy ON samochody.Id_Samochodu = naprawy.Id_Samochodu";
-$result = mysqli_query($connect, $query);
+                    // Zapytanie do bazy danych
+                    $query = "SELECT naprawy.Id_Naprawy, naprawy.OpisNaprawy, samochody.Numer_Rejestracyjny, klienci.Telefon 
+                              FROM klienci 
+                              INNER JOIN samochody ON klienci.Id_Klienta = samochody.Id_Klienta 
+                              INNER JOIN naprawy ON samochody.Id_Samochodu = naprawy.Id_Samochodu";
+                    $result = mysqli_query($connect, $query);
 
-if ($result) {
-    // Pętla po wyniku zapytania
-    while ($row = mysqli_fetch_assoc($result)) {
-        // Tworzenie diva
-        echo '<div class="maxSpan py-3 text-center bg-[#cfe0c3]" id="' . $row['Id_Naprawy'] . '">';
+                    if ($result) {
+                        // Pętla po wyniku zapytania
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            // Tworzenie diva
+                            echo '<div class="maxSpan py-3 text-center bg-[#cfe0c3]" id="' . $row['Id_Naprawy'] . '">';
 
-        // Tworzenie spana
-        echo '<span class=" grid grid-flow-col grid-cols-4 py-3 text-center divide-x-2 divide-slate-400 max-h-10 overflow-hidden">';
+                            // Tworzenie spana
+                            echo '<span class=" grid grid-flow-col grid-cols-4 py-3 text-center divide-x-2 divide-slate-400 max-h-10 overflow-hidden">';
 
-        $Id = $row['Id_Naprawy'];
-        $Dane = $row['Numer_Rejestracyjny'];
-        $Opis = $row['OpisNaprawy'];
-        $Kontakt = $row['Telefon'];
+                            $Id = $row['Id_Naprawy'];
+                            $Dane = $row['Numer_Rejestracyjny'];
+                            $Opis = $row['OpisNaprawy'];
+                            $Kontakt = $row['Telefon'];
 
-        // Dodawanie elementów p do spana
-        echo '<p>' . $Id . '</p>';
-        echo '<p>' . $Dane . '</p>';
-        echo '<p>' . $Opis . '</p>';
-        echo '<p>' . $Kontakt . '</p>';
+                            // Dodawanie elementów p do spana
+                            echo '<p>' . $Id . '</p>';
+                            echo '<p>' . $Dane . '</p>';
+                            echo '<p>' . $Opis . '</p>';
+                            echo '<p>' . $Kontakt . '</p>';
 
-        // Zamknięcie spana
-        echo '</span>';
+                            // Zamknięcie spana
+                            echo '</span>';
 
-        // Zamknięcie diva
-        echo '</div>';
+                            // Zamknięcie diva
+                            echo '</div>';
 
-        // Dodanie obsługi kliknięcia do diva
-        echo '<script>document.getElementById("' . $Id . '").addEventListener("click", function() {';
-        echo 'contentCenter("' . $Dane . '", "' . $Opis . '", "' . $Kontakt . '", "' . $Id . '");'; // Zakładając, że funkcja contentCenter jest zdefiniowana
-        echo '});</script>';
-    }
-} else {
-    echo "Error: " . $query . "<br>" . mysqli_error($connect);
-}
+                            // Dodanie obsługi kliknięcia do diva
+                            echo '<script>document.getElementById("' . $Id . '").addEventListener("click", function() {';
+                            echo 'contentCenter("' . $Dane . '", "' . $Opis . '", "' . $Kontakt . '", "' . $Id . '");';
+                            echo '});</script>';
+                        }
+                    } else {
+                        echo "Error: " . $query . "<br>" . mysqli_error($connect);
+                    }
 
-// Zamykanie połączenia z bazą danych
-mysqli_close($connect);
-?>
+                    // Zamykanie połączenia z bazą danych
+                    mysqli_close($connect);
+                    ?>
 
                 </div>
             </div>

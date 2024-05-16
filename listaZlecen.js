@@ -1,4 +1,4 @@
-function contentCenter(Blachy, Opis, dzien,id) {
+function contentCenter(Blachy, Opis, dzien, id) {
     var contener = document.createElement("div");
     contener.classList.add("fixed", "inset-0", "bg-white", "opacity-80");
 
@@ -18,8 +18,8 @@ function contentCenter(Blachy, Opis, dzien,id) {
     paragraph3.classList.add("CenterDivChild");
 
     var delet = document.createElement("button");
-    delet.textContent = "delete";
-    delet.classList.add("h-18","w-30","bg-cyan-500" ,"shadow-lg" ,"shadow-cyan-500/50");
+    delet.textContent = "Usuń";
+    delet.classList.add("h-18", "w-30", "bg-cyan-500", "shadow-lg", "shadow-cyan-500/50");
 
     centerDiv.style.opacity = "1";
 
@@ -28,34 +28,31 @@ function contentCenter(Blachy, Opis, dzien,id) {
     centerDiv.appendChild(paragraph3);
     centerDiv.appendChild(delet);
 
-    
+    delet.addEventListener('click', () => {
+        var toRemove = document.getElementById(id);
+        if (toRemove) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "delete_record.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log("Rekord został usunięty.");
+                }
+            };
+            xhr.send("id=" + encodeURIComponent(id));
 
-    delet.addEventListener('click',()=>{
-       var toRemove = document.getElementById(id);
-       if(toRemove){
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "delete_object.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Po odebraniu odpowiedzi, usuń element z widoku
-                toRemove.remove();
-                contener.remove();
-                console.log(xhr.responseText); // Wyświetl odpowiedź z serwera w konsoli
-            }
-        };
-        xhr.send("id=" + encodeURIComponent(id));
-    }
-       else{
-        console.error("nie znaleziono");
-       }
-    })
+            toRemove.remove();
+            contener.remove();
+
+        } else {
+            console.error("Nie znaleziono");
+        }
+    });
 
     centerDiv.addEventListener('click', (event) => {
         event.stopPropagation();
     });
     contener.addEventListener('click', () => {
-        // Usuwanie kontenera po kliknięciu
         contener.remove();
     });
 
