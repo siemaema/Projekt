@@ -20,12 +20,6 @@
             <div class="grid grid-rows-1 grid-cols-8 place-items-center grid-flow-col">
                 <div class="grid col-span-7 ml-24">
                     <p class="grid text-3xl place-content-center">Magazyn</p>
-                    <form action="Magazyn.php">
-                        <input type="text" onfocus="this.value=' '" class="rounded-md mt-2" value="wyszukaj czesc">
-                    </form>
-                </div>
-                <div>
-                    <button class="bg-[#a7dec6] px-3 py-1 mb-auto" id="dodaj">Dodaj Czesc</button>
                 </div>
             </div>
             <div id="obrazy" class="grid row-span-4 grid-cols-4 gap-2 overflow-y-auto">
