@@ -36,14 +36,13 @@ function contentCenter(Blachy, Opis, dzien, id) {
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
-                    console.log("Rekord został usunięty.");
+                    console.log("Rekord został usunięty oraz data zakończenia pracy została zaktualizowana.");
                 }
             };
             xhr.send("id=" + encodeURIComponent(id));
 
             toRemove.remove();
             contener.remove();
-
         } else {
             console.error("Nie znaleziono");
         }

@@ -4,6 +4,6 @@ if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Zapytanie do usuwania rekordu
+
 $deleteQuery = "DELETE FROM naprawy WHERE Id_Naprawy = ?";
 ?>
