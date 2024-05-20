@@ -1,35 +1,23 @@
 <?php
-include 'db_connection.php';
+// Połączenie z bazą danych
+$connect = mysqli_connect("srv1482.hstgr.io", "u749382198_admin", "uZq:D*K9", "u749382198_autoservice");
+if (!$connect) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
+// Pobranie ID obiektu do usunięcia
+$id_to_delete = $_POST['id'];
 
-if (isset($_POST['id'])) {
-    $id = $_POST['id'];
-    $today = date('Y-m-d'); 
-    
-    
-    $deleteQuery = "DELETE FROM naprawy WHERE Id_Naprawy = ?";
-    deleteRecord($id, $connect, $deleteQuery);
+// Zapytanie SQL do usunięcia obiektu
+$query = "DELETE * FROM naprawy WHERE id = $id_to_delete";
 
-   
-    $updateQuery = "UPDATE naprawy SET Data_Zakonczenia = ? WHERE Id_Naprawy = ?";
-    updateDate($id, $today, $connect, $updateQuery);
-
-    echo "Rekord został usunięty oraz data zakończenia pracy została zaktualizowana.";
+// Wykonanie zapytania
+if (mysqli_query($connect, $query)) {
+    echo "Obiekt został pomyślnie usunięty";
 } else {
-    echo "Nie przesłano identyfikatora rekordu.";
+    echo "Błąd usuwania obiektu: " . mysqli_error($connect);
 }
 
-function deleteRecord($id, $connect, $deleteQuery) {
-    $stmt = mysqli_prepare($connect, $deleteQuery);
-    mysqli_stmt_bind_param($stmt, "i", $id);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-}
-
-function updateDate($id, $date, $connect, $updateQuery) {
-    $stmt = mysqli_prepare($connect, $updateQuery);
-    mysqli_stmt_bind_param($stmt, "si", $date, $id);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-}
+// Zamykanie połączenia z bazą danych
+mysqli_close($connect);
 ?>
