@@ -32,7 +32,7 @@
                     if (mysqli_connect_errno()) {
                         exit("Błąd połączenia: " . mysqli_connect_error());
                     } else {
-                        $sql = mysqli_query($connect, "SELECT Numer_Rejestracyjny, OpisNaprawy, DataRozpoczecia FROM naprawy inner join samochody ON naprawy.id_Samochodu = samochody.id_Samochodu Limit 5");
+                        $sql = mysqli_query($connect, "SELECT Numer_Rejestracyjny, OpisNaprawy, DataRozpoczecia FROM naprawy inner join samochody ON naprawy.id_Samochodu = samochody.id_Samochodu ORDER BY DataRozpoczecia ASC LIMIT 5");
                     
                         if (!$sql) {
                             exit("Błąd zapytania: " . mysqli_error($connect));
