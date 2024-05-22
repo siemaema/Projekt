@@ -25,30 +25,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $car_model = $_POST['car_model'];
     $car_year = $_POST['car_year'];
 
-    // Sprawdzenie, czy użytkownik wybrał istniejący samochód
-    if (!empty($existing_car_id)) {
-        // Dodanie naprawy dla istniejącego samochodu
-        $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("isssd", $existing_car_id, $start_date, $end_date, $repair_description, $repair_cost);
-        $stmt->execute();
-    } elseif (!empty($new_car_registration_number)) {
-        // Dodanie nowego samochodu do bazy
-        $sql = "INSERT INTO samochody (Id_Klienta, Marka, Model, Rok_Produkcji, Numer_Rejestracyjny) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("issss", $client_id, $car_brand, $car_model, $car_year, $new_car_registration_number);
-        $stmt->execute();
-        
-        // Pobranie ID nowo dodanego samochodu
-        $new_car_id = $conn->insert_id;
+    // Sprawdzenie, czy na wybraną datę jest już zaplanowane 4 lub więcej napraw
+    $check_date_sql = "SELECT COUNT(*) as repair_count FROM naprawy WHERE DataRozpoczecia = ?";
+    $stmt = $conn->prepare($check_date_sql);
+    $stmt->bind_param("s", $start_date);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $repair_count = $row['repair_count'];
 
-        // Dodanie naprawy dla nowego samochodu
-        $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("isssd", $new_car_id, $start_date, $end_date, $repair_description, $repair_cost);
-        $stmt->execute();
+    if ($repair_count >= 4) {
+        echo "Na wybraną datę jest już zaplanowane 4 lub więcej napraw. Wybierz inną datę.";
     } else {
-        echo "Proszę wybrać istniejący samochód lub wprowadzić nowy numer rejestracyjny samochodu.";
+        // Kontynuacja dodawania naprawy
+        if (!empty($existing_car_id)) {
+            // Dodanie naprawy dla istniejącego samochodu
+            $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("isssd", $existing_car_id, $start_date, $end_date, $repair_description, $repair_cost);
+            $stmt->execute();
+        } elseif (!empty($new_car_registration_number)) {
+            // Dodanie nowego samochodu do bazy
+            $sql = "INSERT INTO samochody (Id_Klienta, Marka, Model, Rok_Produkcji, Numer_Rejestracyjny) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("issss", $client_id, $car_brand, $car_model, $car_year, $new_car_registration_number);
+            $stmt->execute();
+            
+            // Pobranie ID nowo dodanego samochodu
+            $new_car_id = $conn->insert_id;
+
+            // Dodanie naprawy dla nowego samochodu
+            $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("isssd", $new_car_id, $start_date, $end_date, $repair_description, $repair_cost);
+            $stmt->execute();
+        } else {
+            echo "Proszę wybrać istniejący samochód lub wprowadzić nowy numer rejestracyjny samochodu.";
+        }
     }
 }
 ?>
