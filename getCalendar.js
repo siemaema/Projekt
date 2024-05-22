@@ -38,6 +38,7 @@ const getCurrentDay = (currentDay) => {
 
 const countRepairsPerDay = (dateToCheck) => {
     const dateToCheckTimestamp = dateToCheck.getTime();
+	console.log(repairDatesFromPHP);
     let count = 0;
     for (let i = 0; i < repairDatesFromPHP.length; i++) {
         const repairDateTimestamp = repairDatesFromPHP[i];
