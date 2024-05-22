@@ -88,7 +88,7 @@ const initCalendar = () => {
     for (let i = 1; i <= lastDateOfMonth; i++) {
         const dayBtn = document.createElement('button');
         dayBtn.textContent = i;
-        dayBtn.classList.add('childContent');
+        
         const repairsCount = countRepairsPerDay(new Date(currentYear, currentMonth, i));
         switch (repairsCount) {
             case 1:
