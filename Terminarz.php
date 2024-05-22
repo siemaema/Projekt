@@ -35,6 +35,7 @@
     
     <script>
         const repairDatesFromPHP = <?php include 'getRepairDates.php'; ?>;
+        console.log(repairDatesFromPHP);
     </script>
     
     <script src="getCalendar.js"></script>
