@@ -45,7 +45,7 @@ function contentCenter(Blachy, Opis, dzien, id) {
             contener.remove();
 
         } else {
-            console.error("Nie znaleziono");
+            console.error("Nie znaleziono elementu do usunięcia.");
         }
     });
 
