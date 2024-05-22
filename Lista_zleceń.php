@@ -39,7 +39,7 @@
                     }
 
                     // Zapytanie do bazy danych
-                    $query = "SELECT naprawy.Id_Naprawy, naprawy.OpisNaprawy, samochody.Numer_Rejestracyjny, klienci.Telefon 
+                    $query = "SELECT naprawy.Id_Naprawy, naprawy.OpisNaprawy,samochody.Marka,samochody.Model ,samochody.Numer_Rejestracyjny, klienci.Telefon 
                               FROM klienci 
                               INNER JOIN samochody ON klienci.Id_Klienta = samochody.Id_Klienta 
                               INNER JOIN naprawy ON samochody.Id_Samochodu = naprawy.Id_Samochodu";
@@ -56,12 +56,14 @@
 
                             $Id = $row['Id_Naprawy'];
                             $Dane = $row['Numer_Rejestracyjny'];
+                            $Marka = $row['Marka'];
+                            $Model = $row['Model'];
                             $Opis = $row['OpisNaprawy'];
                             $Kontakt = $row['Telefon'];
 
                             // Dodawanie elementów p do spana
                             echo '<p>' . $Id . '</p>';
-                            echo '<p>' . $Dane . '</p>';
+                            echo '<p>' . $Dane .": " . $Marka . $Model . '</p>';
                             echo '<p>' . $Opis . '</p>';
                             echo '<p>' . $Kontakt . '</p>';
 

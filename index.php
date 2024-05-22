@@ -38,7 +38,7 @@
                             exit("Błąd zapytania: " . mysqli_error($connect));
                         }
                         $counter = 0;
-                        while ($dane = mysqli_fetch_array($sql)) {$counter++;
+                        while ($dane = mysqli_fetch_array($sql) ) {$counter++;
                             echo "<div class='childContentMain grid grid-flow-col row-span-1 grid-cols-4' onclick='createCenterContent(\"" . htmlspecialchars($dane['Numer_Rejestracyjny'], ENT_QUOTES) . "\",\"" . htmlspecialchars($dane['OpisNaprawy'], ENT_QUOTES) . "\",\"" . htmlspecialchars($dane['DataRozpoczecia'], ENT_QUOTES) . "\")'>";
                             $Blachy = $dane['Numer_Rejestracyjny'];
                             $Opis = $dane['OpisNaprawy'];
