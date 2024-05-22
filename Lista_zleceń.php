@@ -63,7 +63,7 @@
 
                             // Dodawanie elementów p do spana
                             echo '<p>' . $Id . '</p>';
-                            echo '<p>' . $Dane .": " . $Marka . $Model . '</p>';
+                            echo '<p>' . $Marka ." ". $Model ."\n".  $Dane  . '</p>';
                             echo '<p>' . $Opis . '</p>';
                             echo '<p>' . $Kontakt . '</p>';
 
