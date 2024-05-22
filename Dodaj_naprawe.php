@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $num_repairs = $row['count'];
 
     if ($num_repairs >= 4) {
-        // Szukamy najbliższej dostępnej daty
         $next_available_date = findNextAvailableDate($conn, $start_date);
-        echo "Wybrana data jest już zajęta. Proponowana najbliższa dostępna data to: " . $next_available_date;
+        echo "<script>alert('Nie można dodać naprawy w wybranej dacie. Następna dostępna data : $next_available_date');</script>";
+
     } else {
         // Jeśli data jest dostępna, dodajemy naprawę
         $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
