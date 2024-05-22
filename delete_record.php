@@ -5,17 +5,27 @@ if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Pobranie ID obiektu do usunięcia
-$id_to_delete = $_POST['id'];
+// Sprawdzenie, czy ID zostało przesłane
+if (isset($_POST['id'])) {
+    $id_to_delete = intval($_POST['id']);
 
-// Zapytanie SQL do usunięcia obiektu
-$query = "DELETE * FROM naprawy WHERE id = $id_to_delete";
+    // Przygotowanie zapytania SQL do usunięcia obiektu
+    $query = "DELETE FROM naprawy WHERE Id_Naprawy = ?";
 
-// Wykonanie zapytania
-if (mysqli_query($connect, $query)) {
-    echo "Obiekt został pomyślnie usunięty";
+    // Przygotowanie i wykonanie zapytania z użyciem prepared statements
+    $stmt = mysqli_prepare($connect, $query);
+    mysqli_stmt_bind_param($stmt, 'i', $id_to_delete);
+
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Obiekt został pomyślnie usunięty";
+    } else {
+        echo "Błąd usuwania obiektu: " . mysqli_error($connect);
+    }
+
+    // Zamykanie prepared statement
+    mysqli_stmt_close($stmt);
 } else {
-    echo "Błąd usuwania obiektu: " . mysqli_error($connect);
+    echo "Nie podano ID obiektu do usunięcia";
 }
 
 // Zamykanie połączenia z bazą danych
