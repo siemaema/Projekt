@@ -25,44 +25,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $car_model = $_POST['car_model'];
     $car_year = $_POST['car_year'];
 
-    // Sprawdzenie, czy na wybraną datę jest już zaplanowane 4 lub więcej napraw
-    $check_date_sql = "SELECT COUNT(*) as repair_count FROM naprawy WHERE DataRozpoczecia = ?";
-    $stmt = $conn->prepare($check_date_sql);
+    // Sprawdzenie, czy wybrana data jest już zajęta
+    $sql = "SELECT COUNT(*) as count FROM naprawy WHERE DataRozpoczecia = ?";
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $start_date);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
-    $repair_count = $row['repair_count'];
+    $num_repairs = $row['count'];
 
-    if ($repair_count >= 4) {
-        echo "Na wybraną datę jest już zaplanowane 4 lub więcej napraw. Wybierz inną datę.";
+    if ($num_repairs >= 4) {
+        // Szukamy najbliższej dostępnej daty
+        $next_available_date = findNextAvailableDate($conn, $start_date);
+        echo "Wybrana data jest już zajęta. Proponowana najbliższa dostępna data to: " . $next_available_date;
     } else {
-        // Kontynuacja dodawania naprawy
-        if (!empty($existing_car_id)) {
-            // Dodanie naprawy dla istniejącego samochodu
-            $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("isssd", $existing_car_id, $start_date, $end_date, $repair_description, $repair_cost);
-            $stmt->execute();
-        } elseif (!empty($new_car_registration_number)) {
-            // Dodanie nowego samochodu do bazy
-            $sql = "INSERT INTO samochody (Id_Klienta, Marka, Model, Rok_Produkcji, Numer_Rejestracyjny) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("issss", $client_id, $car_brand, $car_model, $car_year, $new_car_registration_number);
-            $stmt->execute();
-            
-            // Pobranie ID nowo dodanego samochodu
-            $new_car_id = $conn->insert_id;
-
-            // Dodanie naprawy dla nowego samochodu
-            $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("isssd", $new_car_id, $start_date, $end_date, $repair_description, $repair_cost);
-            $stmt->execute();
-        } else {
-            echo "Proszę wybrać istniejący samochód lub wprowadzić nowy numer rejestracyjny samochodu.";
-        }
+        // Jeśli data jest dostępna, dodajemy naprawę
+        $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("isssd", $existing_car_id, $start_date, $end_date, $repair_description, $repair_cost);
+        $stmt->execute();
     }
+}
+
+// Funkcja znajdująca najbliższą dostępną datę
+function findNextAvailableDate($conn, $start_date) {
+    // Pobieramy wszystkie daty, na które są zaplanowane naprawy
+    $sql = "SELECT DISTINCT DataRozpoczecia FROM naprawy";
+    $result = $conn->query($sql);
+    $busy_dates = [];
+    while ($row = $result->fetch_assoc()) {
+        $busy_dates[] = $row['DataRozpoczecia'];
+    }
+
+    // Szukamy najbliższej dostępnej daty
+    $next_date = date('Y-m-d', strtotime($start_date . ' + 1 day'));
+    while (in_array($next_date, $busy_dates)) {
+        $next_date = date('Y-m-d', strtotime($next_date . ' + 1 day'));
+    }
+    return $next_date;
 }
 ?>
 
