@@ -88,20 +88,20 @@ const initCalendar = () => {
     for (let i = 1; i <= lastDateOfMonth; i++) {
         const dayBtn = document.createElement('button');
         dayBtn.textContent = i;
-        
+        dayBtn.classList.add('childContent');
         const repairsCount = countRepairsPerDay(new Date(currentYear, currentMonth, i));
         switch (repairsCount) {
             case 1:
-                dayBtn.classList.add('childContent','bg-green-500');
+                dayBtn.classList.add('bg-green-500');
                 break;
 			case 2:
-				dayBtn.classList.add('childContent','bg-green-500');
+				dayBtn.classList.add('bg-green-500');
 				break;
             case 3:
-                dayBtn.classList.add('childContent','bg-yellow-500');
+                dayBtn.classList.add('bg-yellow-500');
                 break;
             case 4:
-                dayBtn.classList.add('childContent','bg-red-500');
+                dayBtn.classList.add('bg-red-500');
                 break;
         }
         calendarDaysContainer.appendChild(dayBtn);
