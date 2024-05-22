@@ -90,6 +90,7 @@ const initCalendar = () => {
         dayBtn.textContent = i;
         
         const repairsCount = countRepairsPerDay(new Date(currentYear, currentMonth, i));
+		console.log(repairsCount)
         switch (repairsCount) {
             case 1:
                 dayBtn.classList.add('bg-green-500');
