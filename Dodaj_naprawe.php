@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $repair_description = $_POST['repair_description'];
     $repair_cost = $_POST['repair_cost'];
     $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
     $car_brand = $_POST['car_brand'];
     $car_model = $_POST['car_model'];
     $car_year = $_POST['car_year'];
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Jeśli data jest dostępna, dodajemy naprawę
         $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("isssd", $existing_car_id, $start_date, $repair_description, $repair_cost);
+        $stmt->bind_param("isssd", $existing_car_id, $start_date, $end_date, $repair_description, $repair_cost);
         $stmt->execute();
     }
 }
@@ -131,6 +132,10 @@ function findNextAvailableDate($conn, $start_date) {
             <div class="mb-4">
                 <label for="start_date" class="block text-gray-700 text-sm font-bold mb-2">Data rozpoczęcia:</label>
                 <input type="date" name="start_date" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="end_date" class="block text-gray-700 text-sm font-bold mb-2">Data zakończenia:</label>
+                <input type="date" name="end_date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div class="flex items-center justify-between">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Dodaj Naprawę</button>
