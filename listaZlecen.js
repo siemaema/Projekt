@@ -1,4 +1,4 @@
-function contentCenter(Blachy, Opis, dzien, id) {
+function contentCenter(Blachy, Opis, dzien, id,marka,model) {
     var contener = document.createElement("div");
     contener.classList.add("fixed", "inset-0", "bg-white", "opacity-80");
 

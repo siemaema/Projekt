@@ -63,7 +63,7 @@
 
                             // Dodawanie elementów p do spana
                             echo '<p>' . $Id . '</p>';
-                            echo '<p>' . $Marka ." ". $Model .'<br>'.  $Dane  . '</p>';
+                            echo '<p>' . $Marka ." ". $Model ."<strong> ".  $Dane  ."</strong>". '</p>';
                             echo '<p>' . $Opis . '</p>';
                             echo '<p>' . $Kontakt . '</p>';
 
@@ -75,7 +75,7 @@
 
                             // Dodanie obsługi kliknięcia do diva
                             echo '<script>document.getElementById("' . $Id . '").addEventListener("click", function() {';
-                            echo 'contentCenter("' . $Dane . '", "' . $Opis . '", "' . $Kontakt . '", "' . $Id . '");';
+                            echo 'contentCenter("' . $Dane . '", "' . $Opis . '", "' . $Kontakt . '", "' . $Id . '","' . $Marka . '","' . $Model . '");';
                             echo '});</script>';
                         }
                     } else {
