@@ -75,7 +75,7 @@ fetch('getRepairDates.php')
                 const dayBtn = document.createElement('button');
                 dayBtn.classList.add('childContent');
                 const repairsCount = countRepairsPerDay(new Date(currentYear, currentMonth, i));
-                dayBtn.textContent = repairsCount;
+                dayBtn.textContent = i;
                 switch (repairsCount) {
                     case 1:
                         dayBtn.classList.add('bg-green-500');
