@@ -14,17 +14,28 @@ if ($conn->connect_error) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Dane z formularza
-    $existing_car_id = isset($_POST['existing_car_id']) ? $_POST['existing_car_id'] : '';
+    $existing_car_id = isset($_POST['existing_car_id']) ? $_POST['existing_car_id'] : null;
     $new_car_registration_number = isset($_POST['new_car_registration_number']) ? $_POST['new_car_registration_number'] : '';
     $client_id = $_POST['client_id'];
     $repair_description = $_POST['repair_description'];
     $repair_cost = $_POST['repair_cost'];
     $start_date = $_POST['start_date'];
     // Data zakończenia ustawiona na NULL
-    $end_date = NULL;
+    $end_date = null;
     $car_brand = $_POST['car_brand'];
     $car_model = $_POST['car_model'];
     $car_year = $_POST['car_year'];
+
+    // Jeśli nie wybrano istniejącego samochodu, dodajemy nowy
+    if (empty($existing_car_id)) {
+        $sql = "INSERT INTO samochody (Id_Klienta, Marka, Model, Rok_Produkcji, Numer_Rejestracyjny) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("issss", $client_id, $car_brand, $car_model, $car_year, $new_car_registration_number);
+        $stmt->execute();
+
+        // Pobieramy ID nowo dodanego samochodu
+        $existing_car_id = $stmt->insert_id;
+    }
 
     // Sprawdzenie, czy wybrana data jest już zajęta
     $sql = "SELECT COUNT(*) as count FROM naprawy WHERE DataRozpoczecia = ?";
@@ -43,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Jeśli data jest dostępna, dodajemy naprawę
         $sql = "INSERT INTO naprawy (Id_Samochodu, DataRozpoczecia, DataZakonczenia, OpisNaprawy, Koszt) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("isssd", $existing_car_id, $start_date, $end_date, $repair_description, $repair_cost);
+        $stmt->bind_param("issds", $existing_car_id, $start_date, $end_date, $repair_description, $repair_cost);
         $stmt->execute();
     }
 }
@@ -72,7 +83,7 @@ function findNextAvailableDate($conn, $start_date) {
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dodaj naprawe</title>
+    <title>Dodaj naprawę</title>
     <link rel="shortcut icon" href="img\icon.png" type="image/x-icon">
     <link rel="stylesheet" href="output.css">
     <script src="https://cdn.tailwindcss.com"></script>
