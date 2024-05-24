@@ -35,7 +35,7 @@
                     data.forEach(part => {
                         const object = document.createElement('img');
                         object.src = "img/"+part.Link;
-                        object.classList.add('hover:translate-y-1.5', 'border-2', 'border-[#a7dec6]');
+                        object.classList.add('border-2', 'border-[#a7dec6]','mix-blend-multiply');
                         
                         cont.appendChild(object);
 
