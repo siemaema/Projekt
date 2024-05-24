@@ -34,7 +34,7 @@
                     const cont = document.getElementById('obrazy');
                     data.forEach(part => {
                         const object = document.createElement('img');
-                        object.src = part.Zdjecie;
+                        object.src = part.Link;
                         object.classList.add('hover:translate-y-1.5', 'border-2', 'border-[#a7dec6]');
                         object.id = part.Id_Czesci;
                         cont.appendChild(object);
