@@ -35,7 +35,7 @@
                     data.forEach(part => {
                         const object = document.createElement('img');
                         object.src = "img/"+part.Link;
-                        object.classList.add('border-2', 'border-[#a7dec6]','saturate-200',"mix-blend-multiply");
+                        object.classList.add('border-2', 'border-black','saturate-200',"mix-blend-multiply","brightness-150");
                         
                         cont.appendChild(object);
 
