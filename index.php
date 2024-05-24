@@ -44,8 +44,8 @@
                             $Opis = $dane['OpisNaprawy'];
                             $dzien = $dane['DataRozpoczecia'];
                     
-                            echo "<p class='element pt-2'>Blachy\n $Blachy </p>";
-                            echo "<p class='element pt-2'>Opis:\n $Opis</p>";
+                            echo "<p class='element pt-2'>Nr.Rej: \n $Blachy </p>";
+                            echo "<p class='element pt-2'>Opis: \n $Opis</p>";
                             echo "<p class='element pt-2'>data rozpoczecia: $dzien</p>";
                     
                             if ($counter <= 2) {
