@@ -36,7 +36,7 @@
                         const object = document.createElement('img');
                         object.src = part.Link;
                         object.classList.add('hover:translate-y-1.5', 'border-2', 'border-[#a7dec6]');
-                        object.id = part.Id_Czesci;
+                        
                         cont.appendChild(object);
 
                         object.addEventListener('click', () => {
@@ -47,7 +47,7 @@
                             centerDiv.classList.add('CenterDivParent', 'absolute', 'top-1/2', 'left-1/2', 'w-2/5', 'h-2/3', '-translate-x-1/2', '-translate-y-1/2', 'p-4', 'rounded-md');
 
                             const paragraph1 = document.createElement('p');
-                            paragraph1.textContent = `Ilość części na stanie: ${part.Ilosc}`;
+                            paragraph1.textContent = `Ilość części na stanie: ${part.IloscNaStanie}`;
                             paragraph1.classList.add('CenterDivChild');
 
                             const paragraph2 = document.createElement('p');
